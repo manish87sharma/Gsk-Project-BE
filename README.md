@@ -1,11 +1,11 @@
 # Project Title
 
-A nice project with a nice description
+To check the number of employees working for a project
 
 ---
 ## Requirements
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
+For development, you will only need Node.js and a node global package, Yarn,npm, installed in your environement.
 
 ### Node
 - #### Node installation on Windows
