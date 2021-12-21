@@ -1,0 +1,173 @@
+openapi: 2.0.0
+info:
+  title: Sample API
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.1.9
+
+
+tags:
+- name: projects
+  description: projects API
+- name: employees
+  description: employee API
+
+paths:
+# [GET] project
+  /project:
+    get:
+      tags:
+      - projects
+      summary: Find All projects
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+# [POST] project
+    post:
+      tags:
+      - projects
+      summary: Add project
+      parameters:
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/project'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] project/id
+  /project/{id}:
+    get:
+      tags:
+      - projects
+      summary: Find project By Id
+      parameters:
+      - name: id
+        in: path
+        description: project Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] project/id
+    put:
+      tags:
+      - projects
+      summary: Update project By Id
+      parameters:
+      - name: id
+        in: path
+        description: project Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: project Data
+        required: true
+        schema:
+          $ref: '#/definitions/project'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] project
+  /employee:
+    get:
+      tags:
+      - employees
+      summary: Find All employees
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] project
+    post:
+      tags:
+      - employees
+      summary: Add employees
+      parameters:
+      - fullName: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/employee'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+
+
+# definitions
+definitions:
+  project:
+    type: object
+    required:
+        - name
+        - startDate
+        - description
+    properties:
+      id:
+        type: string
+        description: user Id
+      startDate:
+        type: string
+        format: date
+        description: Creation date and time
+        example: "2021-01-30T08:30:00Z"
+      description:
+        type: string
+        description: user Password
+      employees:
+        type: array
+        items:
+          $refs: '#/definitions/employee'
+        description: list of employees
+  employee:
+    type: object
+    required:
+        - fullName
+        - employeeId
+    properties:
+      fullName:
+        type: string
+        description: employee name
+      employeeId:
+        type: string
+        description: employeed id
+
+schemes:
+ - https
+ - http

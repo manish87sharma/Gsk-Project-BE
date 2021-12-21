@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Node.js",
+            "program": "${workspaceFolder}/src/index.ts",
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ],
+            "sourceMaps": true,
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "port": 9229,
+            "runtimeArgs": [
+                "--inspect-brk=9229"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
